@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-30T19:39:15.770Z",
+  "workflowId": "a190aad7-5719-41e3-9af6-17c9b4953d2f",
+  "workflowStatus": "completed",
+  "publicationValidation": "passed",
+  "frontendJobId": "412de0fa-b883-4fe1-9887-6b0104706560",
+  "sourceRepo": "https://github.com/identity-md-launches/launch-2742-workflow-frontend-stage-context",
+  "sourceCommit": "44ec6f7d8463f22730cf83a620d34f1e160e70c6",
+  "cid": "bafybeih46zoaxbg6ulzgn6udtzdjv3bxdexfed5mv4l3nnzqu3euczyaj4",
+  "ensName": "squeek-supply-station.identitymd.eth",
+  "ensUrl": "https://squeek-supply-station.identitymd.eth.limo",
+  "workingGateway": "https://squeek-supply-station.imd.site/",
+  "ensGatewayObserved": "TLS protocol error from current network; IMD validation also noted named entrypoint unavailable",
+  "assetsVerified": 10,
+  "backend": "https://api.btc-psbt.fun:9443",
+  "corsOrigins": [
+    "https://api.btc-psbt.fun:9443",
+    "https://squeek-supply-station.identitymd.eth.limo",
+    "https://squeek-supply-station.imd.site"
+  ],
+  "operatorChecks": [
+    "Pinned manifest and all 10 asset hashes matched",
+    "Published ABI canonical hash matched attested handoff",
+    "Exact-origin GET and auth preflight CORS passed",
+    "Browser contract reads show correct owner, signer and domain",
+    "Published frontend guest daily run: 160 points, server replay verified",
+    "Practice local completion and guest exclusion from real leaderboard",
+    "Result restore after refresh",
+    "390px and 320px English layout; wallet picker opens; no observed console errors"
+  ],
+  "pending": [
+    "User wallet login and actual Sepolia score-pin transaction confirmation",
+    "Genesis submission only after final acceptance"
+  ],
+  "userTransactionBroadcast": false
+}

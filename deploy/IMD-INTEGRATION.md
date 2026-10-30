@@ -71,6 +71,14 @@ PUBLIC_ORIGIN建议为稳定API origin，用作登录消息身份域；CORS_ORIG
 
 ## 验收
 
+### 发布与接线结果（2026-10-31）
+
+IMD工作流已completed且发布validation passed，前端交付commit为`44ec6f7d8463f22730cf83a620d34f1e160e70c6`。独立核验的可用入口为`https://squeek-supply-station.imd.site/`；其manifest、ABI和10项资产哈希与官方交付完全一致。ENS记录为`squeek-supply-station.identitymd.eth`，但`.eth.limo`入口在本次网络检查中出现TLS协议错误，不能把ENS已命名等同于网关可访问。
+
+已向后端CORS添加上述两个准确origin，保留API自身origin。正式前端浏览器实测每日挑战跨阶段交付、160分服务端回放、游客不入榜、练习本地结算、刷新恢复、链上owner/signer/域读取以及手机布局通过，未发现控制台错误。详细发布和验收记录见`deployments/frontend.json`。
+
+尚需用户本人在正式前端完成钱包登录及一笔真实Sepolia成绩存证，并确认链上标记；此前操作员仅做签名验证和eth_call模拟，未广播用户交易。达到最后验收条件后再保存Genesis项目，当前未提交。
+
 - import成功且精确commit存在，check无blockers；quote实际计划正确。
 - VPS HTTPS /healthz与/v1/challenges/today可读，重启不丢赛题/成绩。
 - IMD网站没有Mock，匿名/登录区分明确，回放验证通过，真实排行榜持久。

@@ -20,5 +20,5 @@
   "workflowId": "a190aad7-5719-41e3-9af6-17c9b4953d2f",
   "launchId": "334bd55d-94b0-4a08-93ca-4b0d3d263cfa",
   "backendConfigured": true,
-  "frontendStatus": "pending"
+  "frontendStatus": "published_and_api_connected_awaiting_user_wallet_acceptance"
 }
