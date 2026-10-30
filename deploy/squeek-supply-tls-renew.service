@@ -1,0 +1,8 @@
+[Unit]
+Description=Renew Squeek Supply API certificate
+After=docker.service network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /home/ubuntu/squeek-supply-station/deploy/renew-tls.sh

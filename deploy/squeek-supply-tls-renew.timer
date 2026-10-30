@@ -1,0 +1,10 @@
+[Unit]
+Description=Check Squeek Supply API certificate renewal twice daily
+
+[Timer]
+OnCalendar=*-*-* 03,15:18:00
+RandomizedDelaySec=900
+Persistent=true
+
+[Install]
+WantedBy=timers.target

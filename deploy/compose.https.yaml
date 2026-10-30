@@ -1,0 +1,20 @@
+# Merge with compose.api.yaml. This host reserves standard 443 for its existing Reality service.
+services:
+  https:
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    ports:
+      - "9443:443"
+    volumes:
+      - ./nginx-9443.conf:/etc/nginx/conf.d/default.conf:ro
+      - /home/ubuntu/squeek-supply-tls:/etc/letsencrypt:ro
+    depends_on:
+      api:
+        condition: service_healthy
+    mem_limit: 64m
+    pids_limit: 64
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
