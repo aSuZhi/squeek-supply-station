@@ -62,7 +62,7 @@ finish 先校验日志形状，原子占用状态 started→verifying，交给�
 
 ## 6. 成绩合约
 
-`contracts/src/SqueekSupplyBoard.sol`，EIP-712 domain：name=`SqueekSupply`，version=`2`，chainId=11155111，verifyingContract=部署地址。
+`src/SqueekSupplyBoard.sol`，EIP-712 domain：name=`SqueekSupply`，version=`2`，chainId=11155111，verifyingContract=部署地址。
 
 ```
 ScoreAttestation(bytes32 runId,bytes32 challengeId,bytes32 configHash,address player,uint64 score,uint32 deliveries,uint64 deadline)

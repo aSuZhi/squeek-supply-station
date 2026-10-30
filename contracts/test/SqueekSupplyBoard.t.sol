@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
-import {SqueekSupplyBoard} from "../src/SqueekSupplyBoard.sol";
+import {SqueekSupplyBoard} from "../../src/SqueekSupplyBoard.sol";
 interface Vm {
     function addr(uint256) external returns(address);
     function sign(uint256,bytes32) external returns(uint8,bytes32,bytes32);

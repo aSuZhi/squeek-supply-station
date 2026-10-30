@@ -10,10 +10,10 @@
     "start": "node --env-file-if-exists=.env server/main.js",
     "dev": "node --env-file-if-exists=.env server/main.js",
     "test": "node --test tests/*.test.mjs",
-    "test:contracts": "forge test --root contracts",
+    "test:contracts": "forge test",
     "test:chain": "node scripts/chain-smoke.mjs",
     "check": "node scripts/check.mjs",
-    "contracts:build": "forge build --root contracts",
+    "contracts:build": "forge build",
     "deploy": "node --env-file-if-exists=.env scripts/deploy.mjs",
     "format": "prettier --write \"server/*.js\" \"scripts/*.mjs\" \"tests/*.mjs\" \"squeek-drop-frontend/squeek-drop/js/*.js\" \"squeek-drop-frontend/squeek-drop/index.html\" \"squeek-drop-frontend/squeek-drop/css/*.css\"",
     "build:site": "node --env-file-if-exists=.env scripts/export-site.mjs"

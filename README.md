@@ -59,7 +59,8 @@ npm run test:chain
 squeek-drop-frontend/squeek-drop/  原生前端及共享引擎
 engines/sd-1.0.0/                旧版规则快照
 server/                          Fastify、SQLite、挑战发布、回放池、签名/确认
-contracts/                       Solidity与Foundry测试
+src/                             Solidity成绩合约（IMD要求的根目录）
+contracts/                       Foundry测试及本地构建输出
 tests/                           引擎、API、ABI测试
 scripts/                         语法检查、本地链联调、显式部署
 ```

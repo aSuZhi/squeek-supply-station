@@ -1,6 +1,6 @@
-# Root entry point for IMD repository import. Keep compiler settings aligned with contracts/foundry.toml.
+# Root entry point for local verification and IMD repository import.
 [profile.default]
-src = "contracts/src"
+src = "src"
 test = "contracts/test"
 out = "contracts/out"
 cache_path = "contracts/cache"

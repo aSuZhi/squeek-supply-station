@@ -33,7 +33,7 @@
 
 ## 工程适配
 
-- 根foundry.toml让IMD能识别Foundry项目；根和contracts配置均设bytecode_hash="none"。本机测试工具为Foundry1.7.1；IMD文档的验证器版本为1.8.3，需以远端导入/审查结果确认兼容，未擅自升级本机全局工具。
+- 根foundry.toml及src/SqueekSupplyBoard.sol供IMD识别，设置bytecode_hash="none"。首次免费导入发现仅指定嵌套src路径仍被判no_sources，因此已将实际合约移至根src，统一使用根Foundry配置。本机测试工具为Foundry1.7.1；IMD文档的验证器版本为1.8.3，需以远端导入/审查结果确认兼容，未擅自升级本机全局工具。
 - 使用`onchain:evm_contracts`，不使用默认带代币的evm_project，也不创建池、代币经济或SQK授权。
 - 唯一构造函数：SqueekSupplyBoard(initialOwner,initialSigner)，两项都是静态address，符合该部署类型。owner必须是用户EOA，不能意外留给部署工厂；signer是独立后端签名者。
 - 前端目录为`squeek-drop-frontend/squeek-drop/`；共享引擎路径与规则版本保持不变。
