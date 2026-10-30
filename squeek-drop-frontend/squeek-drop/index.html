@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Squeek Drop — the hamster-powered merge game</title>
+<meta name="description" content="Drop hamsters, merge them up and mine Squeek blocks. A merge-drop game powered by Squeekchain's live wheel, with verified scores pinned on Sepolia." />
+<meta property="og:title" content="Squeek Drop" />
+<meta property="og:description" content="The hamster-powered merge game on Squeekchain." />
+<meta name="theme-color" content="#FFF8EE" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='18' cy='16' r='9' fill='%23F5B98A'/%3E%3Ccircle cx='46' cy='16' r='9' fill='%23F5B98A'/%3E%3Ccircle cx='32' cy='36' r='24' fill='%23F5B98A'/%3E%3Ccircle cx='23' cy='33' r='3.5' fill='%232B1D14'/%3E%3Ccircle cx='41' cy='33' r='3.5' fill='%232B1D14'/%3E%3Cellipse cx='32' cy='40' rx='3' ry='2' fill='%23E06C7A'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="brand" data-go="lobby" aria-label="Squeek Drop home">
+    <canvas id="brandIcon" width="36" height="36" aria-hidden="true"></canvas>
+    <span class="brand-name">Squeek<b>Drop</b></span>
+  </button>
+  <nav class="nav" aria-label="Main">
+    <button data-go="lobby" data-i18n="nav_play">Play</button>
+    <button data-go="board" data-i18n="nav_board">Leaderboard</button>
+    <button data-open="help" data-i18n="nav_help">How to play</button>
+  </nav>
+  <div class="top-actions">
+    <span id="demoBadge" class="pill pill-warn" hidden data-i18n="demo">Demo mode</span>
+    <button id="muteBtn" class="icon-btn" aria-label="Toggle sound">🔊</button>
+    <button id="langBtn" class="icon-btn lang" aria-label="Switch language">中</button>
+    <button id="walletBtn" class="btn btn-dark"><span class="dot"></span><span id="walletLabel" data-i18n="connect">Connect wallet</span></button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- LOBBY -->
+  <section id="view-lobby" class="view" aria-labelledby="heroTitle">
+    <div class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Squeekchain · Genesis</span>
+        <h1 id="heroTitle" data-i18n="tagline">Drop hamsters. Merge them up. Mine real Squeek blocks.</h1>
+        <p class="lead" data-i18n="sub"></p>
+        <div class="hero-cta">
+          <button class="btn btn-primary btn-lg" data-mode="daily"><span data-i18n="playDaily">Play the Daily Cup</span> →</button>
+          <button class="btn btn-ghost btn-lg" data-open="help" data-i18n="howTo">How to play</button>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="card wheel-card" data-wheel="full"></div>
+      </div>
+    </div>
+
+    <h2 class="section-title" data-i18n="modes">Pick a mode</h2>
+    <div class="modes">
+      <article class="mode-card mode-daily">
+        <div class="mode-top"><span class="mode-emoji" aria-hidden="true">🏆</span><span class="pill pill-blue" data-i18n="ranked">Ranked</span></div>
+        <h3 data-i18n="m_daily">Daily Cup</h3><p data-i18n="md_daily"></p>
+        <button class="btn btn-primary" data-mode="daily" data-i18n="play">Play</button>
+      </article>
+      <article class="mode-card mode-pot">
+        <div class="mode-top"><span class="mode-emoji" aria-hidden="true">🧀</span><span class="pill pill-orange" data-i18n="onchain">On-chain</span></div>
+        <h3 data-i18n="m_pot">Cheese Pot</h3><p data-i18n="md_pot"></p>
+        <button class="btn btn-dark" data-open="pot" data-i18n="enter">Enter</button>
+      </article>
+      <article class="mode-card mode-holder">
+        <div class="mode-top"><span class="mode-emoji" aria-hidden="true">🐹</span><span class="pill pill-purple" data-i18n="holders">Holders</span></div>
+        <h3 data-i18n="m_holder">Holder Cup</h3><p data-i18n="md_holder"></p>
+        <button class="btn btn-dark" data-mode="holder" data-i18n="play">Play</button>
+      </article>
+      <article class="mode-card mode-free">
+        <div class="mode-top"><span class="mode-emoji" aria-hidden="true">🎈</span><span class="pill" data-i18n="casual">Casual</span></div>
+        <h3 data-i18n="m_free">Free Play</h3><p data-i18n="md_free"></p>
+        <button class="btn btn-ghost" data-mode="free" data-i18n="play">Play</button>
+      </article>
+    </div>
+
+    <h2 class="section-title" data-i18n="powered">How the chain plays along</h2>
+    <ol class="steps">
+      <li><span class="step-n">01</span><h3 data-i18n="p1t"></h3><p data-i18n="p1d"></p></li>
+      <li><span class="step-n">02</span><h3 data-i18n="p2t"></h3><p data-i18n="p2d"></p></li>
+      <li><span class="step-n">03</span><h3 data-i18n="p3t"></h3><p data-i18n="p3d"></p></li>
+    </ol>
+
+    <h2 class="section-title" data-i18n="ladder">The Squeek ladder</h2>
+    <div id="ladder" class="ladder" role="list"></div>
+    <footer class="foot">
+      <span>Built for the Squeekchain Genesis code lane · Sepolia testnet · Reads <code>api.squeekchain.com</code></span>
+      <span>Squeektoshi’s wheel time is never forced — naps are a weather too.</span>
+    </footer>
+  </section>
+
+  <!-- GAME -->
+  <section id="view-game" class="view" hidden aria-label="Game">
+    <div class="game-grid">
+      <aside class="side side-left">
+        <div class="card wheel-card compact" data-wheel="mini"></div>
+        <div class="card run-card">
+          <div class="kv"><span data-i18n="mode">Mode</span><b id="runMode">—</b></div>
+          <div class="kv"><span data-i18n="weather">Run weather</span><b id="runWeather">—</b></div>
+          <p id="runWeatherDesc" class="muted small"></p>
+          <div class="kv"><span data-i18n="seed">Seed</span><code id="runSeed">—</code></div>
+          <div class="kv" id="captainRow" hidden><span data-i18n="captain">Captain</span><b id="runCaptain">—</b></div>
+        </div>
+      </aside>
+
+      <div class="stage-wrap">
+        <div class="hud">
+          <div class="hud-stat"><span data-i18n="score">Score</span><b id="hudScore">0</b></div>
+          <div class="hud-stat"><span data-i18n="best">Best</span><b id="hudBest">0</b></div>
+          <div class="hud-stat"><span data-i18n="combo">Combo</span><b id="hudCombo">—</b></div>
+          <div id="feverBadge" class="fever" hidden data-i18n="fever">FEVER ×2</div>
+        </div>
+        <div class="blockbar" aria-label="Block bar">
+          <div class="blockbar-label"><span><span id="hudWeather" class="hud-wx"></span>⛏ <span data-i18n="blockbar">Block bar</span></span><span><span data-i18n="blocks">Blocks mined</span>: <b id="hudBlocks">0</b></span></div>
+          <div class="bar"><div id="hudBar" class="bar-fill"></div></div>
+        </div>
+        <div class="stage" id="stage">
+          <canvas id="game" aria-label="Game board. Move to aim, click or tap to drop." tabindex="0"></canvas>
+        </div>
+        <p class="keys muted small" data-i18n="keys"></p>
+      </div>
+
+      <aside class="side side-right">
+        <div class="card queue-card">
+          <h3 class="card-title" data-i18n="next">Next</h3>
+          <div id="queue" class="queue"></div>
+        </div>
+        <div class="tools">
+          <button id="pouchBtn" class="tool" aria-label="Cheek pouch (C)">
+            <canvas id="pouchIcon"></canvas>
+            <span data-i18n="pouch">Cheek pouch</span><kbd>C</kbd>
+          </button>
+          <button id="shakeBtn" class="tool" aria-label="Shake (X)">
+            <svg class="tool-svg" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="26" r="11" fill="#F5B98A"/><circle cx="18" cy="16" r="4" fill="#F5B98A"/><circle cx="30" cy="16" r="4" fill="#F5B98A"/><circle cx="20" cy="25" r="1.8" fill="#2B1D14"/><circle cx="28" cy="25" r="1.8" fill="#2B1D14"/><path d="M6 18c-3 4-3 12 0 16M42 18c3 4 3 12 0 16M11 21c-2 3-2 7 0 10M37 21c2 3 2 7 0 10" stroke="#C2560F" stroke-width="2.6" fill="none" stroke-linecap="round"/></svg>
+            <span><span data-i18n="shake">Shake</span> <b id="shakeCount">0</b></span><kbd>X</kbd>
+          </button>
+        </div>
+        <div class="card mini-board">
+          <h3 class="card-title" data-i18n="b_daily">Daily Cup</h3>
+          <ol id="miniBoard" class="mini-list"></ol>
+        </div>
+        <button id="quitBtn" class="btn btn-ghost btn-block" data-i18n="quit">End run</button>
+      </aside>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section id="view-board" class="view" hidden aria-labelledby="boardTitle">
+    <div class="board-head">
+      <h1 id="boardTitle" data-i18n="board_title">Leaderboards</h1>
+      <div class="tabs" role="tablist">
+        <button role="tab" data-board="daily" aria-selected="true" data-i18n="b_daily">Daily Cup</button>
+        <button role="tab" data-board="pot" data-i18n="b_pot">Cheese Pot</button>
+        <button role="tab" data-board="holder" data-i18n="b_holder">Holder Cup</button>
+        <button role="tab" data-board="all" data-i18n="b_all">All-time</button>
+      </div>
+    </div>
+    <div class="card table-card">
+      <table class="table">
+        <thead><tr><th>#</th><th data-i18n="player">Player</th><th data-i18n="maxLv">Top Squeek</th><th data-i18n="weather">Weather</th><th class="num" data-i18n="score">Score</th></tr></thead>
+        <tbody id="boardBody"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<!-- MODALS -->
+<div class="modal" id="modal-over" hidden role="dialog" aria-modal="true" aria-labelledby="overTitle">
+  <div class="modal-card">
+    <canvas id="overIcon" class="over-icon" aria-hidden="true"></canvas>
+    <h2 id="overTitle" data-i18n="over">Run over</h2>
+    <div class="over-score" id="overScore">0</div>
+    <div id="overBest" class="pill pill-green" hidden data-i18n="newBest">New best!</div>
+    <div class="over-stats">
+      <div><span data-i18n="rank">Rank</span><b id="overRank">—</b></div>
+      <div><span data-i18n="maxLv">Top Squeek</span><b id="overLv">—</b></div>
+      <div><span data-i18n="blocks">Blocks mined</span><b id="overBlocks">0</b></div>
+    </div>
+    <p id="overStatus" class="status-line"></p>
+    <div class="modal-actions">
+      <button id="pinBtn" class="btn btn-dark" hidden><span data-i18n="pin">Pin score on Sepolia</span></button>
+      <button id="againBtn" class="btn btn-primary" data-i18n="again">Play again</button>
+      <button id="shareBtn" class="btn btn-ghost" data-i18n="share">Share on X</button>
+      <button class="btn btn-link" data-go="lobby" data-close data-i18n="lobby">Back to lobby</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-help" hidden role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+  <div class="modal-card wide">
+    <h2 id="helpTitle" data-i18n="help_title">How to play</h2>
+    <ol class="help-list">
+      <li data-i18n="h1"></li><li data-i18n="h2"></li><li data-i18n="h3"></li><li data-i18n="h4"></li><li data-i18n="h5"></li>
+    </ol>
+    <div class="weather-grid">
+      <div class="wx wx-NAP"><b>💤 <span data-i18n="w_NAP"></span></b><p data-i18n="wd_NAP"></p></div>
+      <div class="wx wx-JOG"><b>🐾 <span data-i18n="w_JOG"></span></b><p data-i18n="wd_JOG"></p></div>
+      <div class="wx wx-ZOOMIES"><b>🔥 <span data-i18n="w_ZOOMIES"></span></b><p data-i18n="wd_ZOOMIES"></p></div>
+    </div>
+    <div class="modal-actions"><button class="btn btn-primary" data-close data-i18n="close">Close</button></div>
+  </div>
+</div>
+
+<div class="modal" id="modal-pot" hidden role="dialog" aria-modal="true" aria-labelledby="potTitle">
+  <div class="modal-card">
+    <h2 id="potTitle">🧀 <span data-i18n="potTitle">Cheese Pot</span> <small id="potWeek" class="muted"></small></h2>
+    <div class="pot-stats">
+      <div><span data-i18n="potSize">Pot</span><b id="potSize">—</b></div>
+      <div><span data-i18n="potEntry">Entry fee</span><b id="potFee">—</b></div>
+      <div><span data-i18n="potEntrants">Entrants</span><b id="potEntrants">—</b></div>
+      <div><span data-i18n="potEnds">Ends</span><b id="potEnds">—</b></div>
+    </div>
+    <p class="muted small"><span data-i18n="potBal">Your SQK</span>: <b id="potBal">—</b></p>
+    <div class="modal-actions col">
+      <button id="potApprove" class="btn btn-ghost" data-i18n="potApprove">1. Approve SQK</button>
+      <button id="potEnter" class="btn btn-dark" data-i18n="potEnter">2. Enter the pot</button>
+      <button id="potPlay" class="btn btn-primary" hidden data-i18n="play">Play</button>
+    </div>
+    <p id="potStatus" class="status-line"></p>
+    <div class="modal-actions"><button class="btn btn-link" data-close data-i18n="close">Close</button></div>
+  </div>
+</div>
+
+<div class="modal" id="modal-captain" hidden role="dialog" aria-modal="true" aria-labelledby="capTitle">
+  <div class="modal-card">
+    <h2 id="capTitle" data-i18n="pickCaptain">Pick your captain</h2>
+    <div id="captainList" class="captain-list"></div>
+    <div class="modal-actions"><button class="btn btn-link" data-close data-i18n="close">Close</button></div>
+  </div>
+</div>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
