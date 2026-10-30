@@ -33,7 +33,15 @@
 
 ## 工程适配
 
-线上API已在`https://api.btc-psbt.fun:9443`运行，证书及续期演练通过。标准443保留给原Reality服务，80保留给邮件服务；仅使用现有webroot作HTTP-01域名验证。合约部署地址尚待IMD返回，不能据此声称存证已上线。当前源代码已包含`lib/`内的OpenZeppelin依赖供离线构建。
+线上API已在`https://api.btc-psbt.fun:9443`运行，证书及续期演练通过。标准443保留给原Reality服务，80保留给邮件服务；仅使用现有webroot作HTTP-01域名验证。当前源代码已包含`lib/`内的OpenZeppelin依赖供离线构建。
+
+### 合约及后端接线（2026-10-31）
+
+Sepolia Board：`0x21384e42f851956fa673459297d76dfe8e778c5d`，完整核验记录及部署ABI在`deployments/`。已从IMD的准确交付commit重新编译，比对ABI、创建代码和运行时代码（编译器immutable区段单独按EIP-712域读取核验）；链上owner、signer、域名/版本/typehash均匹配。
+
+最终复审明确确认配置锁恢复、静态owner、重复轮换及紧急轮换问题已修复，无新的findings。部署版本的规范源码为`identity-md-launches/launch-2736-squeeksupplyboard`的`ac4a5c775fe04796d230519a7c748fb71865678d`，包含新增管理接口；不要把本仓库原版src直接重部署成“相同生产版本”。现有后端调用的pinScore等稳定接口和签名格式保持兼容。
+
+已保留其余生产配置，仅回填BOARD_ADDRESS并重建本项目API容器。公网验证完成临时测试钱包登录、回放验证、实际服务端签名，以及对已部署Sepolia合约的eth_call模拟，全部通过。未广播测试交易，未花费用户资金，临时测试成绩已清理。IMD前端仍待发布，需返回准确origin后再配置CORS并做网站验收；此记录不代表整个产品已经交付或可以提前提交Genesis审核。
 
 - 根foundry.toml及src/SqueekSupplyBoard.sol供IMD识别，设置bytecode_hash="none"。首次免费导入发现仅指定嵌套src路径仍被判no_sources，因此已将实际合约移至根src，统一使用根Foundry配置。本机测试工具为Foundry1.7.1；IMD文档的验证器版本为1.8.3，需以远端导入/审查结果确认兼容，未擅自升级本机全局工具。
 - 使用`onchain:evm_contracts`，不使用默认带代币的evm_project，也不创建池、代币经济或SQK授权。
