@@ -7,6 +7,22 @@ import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 import { buildApp } from "../server/app.js";
 import { RULES_VERSION } from "../squeek-drop-frontend/squeek-drop/js/engine.js";
 import { fixtureSource, login, play } from "./helpers.mjs";
+import { sha } from "../server/util.js";
+
+test("single trusted ingress uses the nearest forwarded client, not spoofed earlier hops", async (t) => {
+  const secret = "test-only-proxy-check";
+  const { app } = await setup(t, {
+    trustProxy: "127.0.0.1/32",
+    jwtSecret: secret,
+  });
+  const run = await start(app, {
+    "x-forwarded-for": "198.51.100.99, 203.0.113.8",
+  });
+  const row = app.services.db
+    .prepare("SELECT rate_key FROM runs WHERE id=?")
+    .get(run.runId);
+  assert.equal(row.rate_key, sha("203.0.113.8" + secret));
+});
 
 async function setup(t, overrides = {}) {
   let clock = Date.parse("2026-10-30T12:00:00Z");

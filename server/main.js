@@ -28,6 +28,8 @@ if (process.argv.includes("--help")) {
     dbPath: process.env.DB_PATH || "data/squeek.sqlite",
     origin,
     jwtSecret: process.env.JWT_SECRET,
+    // Enable only behind our sole public nginx ingress; the API port stays loopback-only.
+    trustProxy: process.env.TRUST_PROXY_CIDRS || false,
     corsOrigins: (process.env.CORS_ORIGINS || origin).split(","),
     sourceProvider: () =>
       fetchSource(

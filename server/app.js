@@ -43,7 +43,7 @@ export async function buildApp(options = {}) {
   const app = Fastify({
     logger: options.logger ?? false,
     bodyLimit: 256 * 1024,
-    trustProxy: false,
+    trustProxy: options.trustProxy ?? false,
     requestTimeout: 20000,
     connectionTimeout: 20000,
     forceCloseConnections: true,
