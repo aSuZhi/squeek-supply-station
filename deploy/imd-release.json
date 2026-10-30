@@ -1,0 +1,47 @@
+{
+  "action": "workflow.open",
+  "input": {
+    "request": "Release Squeek Supply Station as a PUBLIC PLAYABLE WEBSITE on IPFS with an ENS name, plus its score contract on Sepolia. Start from the source tree supplied by draft.repoUrl and draft.baseCommit; there is no earlier IMD job. FIRST independently audit the imported contract, adapt only deployment packaging and necessary fixes, run Foundry tests, and perform an independent security review BEFORE deploying SqueekSupplyBoard. THEN use frontend-for-contract to build/export the existing bilingual HTML/Canvas game as a usable website, publish it on IPFS under squeek-supply-station, and return its public URL. Preserve its daily challenge, practice, delivery mechanics, replay verification and real leaderboard. Website screens must include lobby with source transactions, game with three 60-second missions, leaderboard and results with wallet login and pinScore. Connect the site to the real API https://api.btc-psbt.fun:9443 and the newly deployed score board. Do not create mocks or invent scores. Contract owner is 0x51404e4a699e4e338e143fb2a45c5cdc96392575; PUBLIC score signer is 0x2Dc8205A9650faFB65B51aE25cC34cEfDEe08653. SqueekSupplyBoard records EIP-712 server-attested scores: only the owner changes signer; anyone submits their own signed score; runId is single-use, score must exceed their prior best, deadline must not be expired, and each challengeId locks one configHash. Keep the existing uint64 score/deadline, uint32 deliveries, ABI, SqueekSupply domain version 2 and shared ss-2.0.0 engine. No fees, payouts, recipient of funds, token, pool, proxy or upgrade. Constructors take owner and signer addresses. The backend already exists on a separate VPS; IMD publishes the STATIC frontend only. Contract builders operate offline with the committed src, lib and tests; live website checks happen after deployment. Never publish private keys.",
+    "context": "The repository is provided by the successful contracts import, not merely a link in the prose. It includes src/SqueekSupplyBoard.sol, vendored OpenZeppelin 5.6.1 in lib, contracts/test, Node24 server and squeek-drop-frontend/squeek-drop. Root foundry.toml sets bytecode_hash=none. Export static UI with SITE_API_BASE=https://api.btc-psbt.fun:9443 npm run build:site (dist/). Server-held secrets are not in this repository. This is a no-token contract-to-website workflow.",
+    "draft": {
+      "objective": "Audit, test and independently review SqueekSupplyBoard from the supplied source, deploy it on Sepolia with the stated owner and signer, then publish the existing PLAYABLE Squeek Supply Station website on IPFS/ENS with real backend integration and the deployed ABI. Preserve the game and API contract; no token, pool, fees, payouts or mocks.",
+      "repoUrl": "https://github.com/aSuZhi/squeek-supply-station.git",
+      "baseCommit": "a312b27a2661a980d3551eee193a59904287335e",
+      "shape": "chain",
+      "onchain": "evm_contracts",
+      "chainId": 11155111,
+      "owner": "0x51404e4a699e4e338e143fb2a45c5cdc96392575",
+      "github": true,
+      "ipfs": "squeek-supply-station",
+      "contracts": ["SqueekSupplyBoard"],
+      "steps": [
+        {
+          "skill": "audit-imported-code"
+        },
+        {
+          "skill": "adapt-contract-project"
+        },
+        {
+          "skill": "adversarial-review"
+        },
+        {
+          "skill": "frontend-for-contract",
+          "objective": "Publish the existing bilingual game as a publicly accessible IPFS/ENS static website, using API https://api.btc-psbt.fun:9443. Include playable daily challenge and practice, wallet sign-in, real leaderboard and score pinning, plus dist/imd-deployment.json.",
+          "acceptanceCriteria": [
+            "The dist/ static export contains the playable website, ABIs and validated deployment manifest, ready for the publisher to host on IPFS/ENS after worker completion.",
+            "Daily challenge, practice, leaderboard, login and results work against the real external API.",
+            "No backend private key or fabricated score is included in the static export."
+          ]
+        }
+      ]
+    },
+    "permissions": {
+      "github": true,
+      "ipfs": "squeek-supply-station",
+      "onchain": {
+        "kind": "evm_contracts",
+        "chainId": 11155111
+      }
+    }
+  }
+}

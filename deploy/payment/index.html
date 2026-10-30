@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>补给站 · IMD 发布确认</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <p class="label">SQUEEK SUPPLY STATION / 发布确认</p>
+      <h1>把这个版本交给 IMD</h1>
+      <p>
+        这是本项目提供的钱包操作页，不是 IMD 官方网站。交易直接发送到 IMD 官方
+        Intake 合约，不经过本站资金托管。
+      </p>
+      <div class="summary">
+        <strong>0.5 IMD</strong
+        ><span>Ethereum 主网付款 · 另需钱包显示的 ETH gas</span>
+        <p>
+          目标：审查现有合约 → 部署到 Sepolia →
+          发布现有游戏前端。无代币、无池、无奖池。
+        </p>
+      </div>
+      <dl>
+        <dt>付款钱包 / 合约 owner</dt>
+        <dd id="payer"></dd>
+        <dt>官方 IMD Token</dt>
+        <dd id="asset"></dd>
+        <dt>官方 IMD Intake（授权及请求目标）</dt>
+        <dd id="intake"></dd>
+        <dt>源代码版本</dt>
+        <dd id="commit"></dd>
+        <dt>免费报价有效期</dt>
+        <dd id="expires"></dd>
+      </dl>
+      <p>
+        <a href="input.json" target="_blank" rel="noopener"
+          >查看完整工作流 JSON</a
+        >
+        ·
+        <a
+          href="https://imd.fun/skill/onchain.md"
+          target="_blank"
+          rel="noopener"
+          >官方链上提交说明</a
+        >
+      </p>
+      <p class="notice">
+        IMD
+        收取的是工作受理费用，不保证最终交付成功。请核对钱包中的主网、目标合约、授权额度和费用后再确认。此页只授权
+        0.5 IMD，不使用无限授权。
+      </p>
+      <div class="actions">
+        <button id="connect" disabled>1. 连接已验证的钱包</button
+        ><button id="approve" disabled>2. 授权最多 0.5 IMD</button
+        ><button id="submit" disabled>3. 支付 0.5 IMD 并发起工作流</button>
+      </div>
+      <p id="status" role="status">正在加载已验证的请求…</p>
+      <div id="links"></div>
+      <p class="note">
+        不会自动发起交易。每一步都由你点击并在钱包内确认；不要重复支付。提交后把此页显示的交易哈希发给我，我会跟踪
+        IMD 的工作单。
+      </p>
+    </main>
+    <script type="module" src="payment.js"></script>
+  </body>
+</html>

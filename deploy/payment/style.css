@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #fff8ed;
+  color: #39291e;
+  font:
+    16px/1.7 system-ui,
+    sans-serif;
+}
+main {
+  max-width: 780px;
+  margin: 40px auto;
+  padding: 28px;
+  background: #fffdfa;
+  border: 1px solid #eadbc4;
+  border-radius: 18px;
+}
+.label {
+  font-size: 12px;
+  color: #a44a09;
+  letter-spacing: 2px;
+}
+h1 {
+  line-height: 1.2;
+}
+p {
+  color: #685749;
+}
+.summary {
+  background: #f5e8cf;
+  padding: 22px;
+  border-radius: 12px;
+}
+.summary strong {
+  display: block;
+  font-size: 38px;
+}
+.summary span,
+.note {
+  font-size: 13px;
+}
+dt {
+  font-weight: 700;
+  margin-top: 14px;
+}
+dd {
+  margin: 3px 0;
+  overflow-wrap: anywhere;
+  font: 13px/1.6 monospace;
+}
+a {
+  color: #9e460b;
+  overflow-wrap: anywhere;
+}
+.notice {
+  font-size: 14px;
+  border-left: 3px solid #b86114;
+  padding-left: 14px;
+}
+.actions {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0;
+}
+button {
+  font: 700 16px system-ui;
+  padding: 15px;
+  border: 1px solid #c3ab85;
+  border-radius: 9px;
+  background: #fff8ed;
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+#submit {
+  background: #a44808;
+  color: white;
+}
+#status {
+  padding: 14px;
+  background: #eff4ec;
+  overflow-wrap: anywhere;
+}
+#links p {
+  font-size: 13px;
+}
+:focus-visible {
+  outline: 3px solid #28826c;
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  main {
+    margin: 0;
+    padding: 20px;
+    border: 0;
+    border-radius: 0;
+  }
+}
