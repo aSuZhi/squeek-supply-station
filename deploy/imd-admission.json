@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-10-30T17:03:36.208Z",
+  "paymentChainId": 1,
+  "paymentTx": "0x4731a07db8a0b38e4e2d976c5ece51db0c3a5ba48a8bbe1391f109069fb21e7f",
+  "payer": "0x51404e4a699e4e338e143fb2a45c5cdc96392575",
+  "amountBaseUnits": "500000000000000000",
+  "asset": "0xd34a99bc0f67ae1bbd63c660e6d0b0dd03e263b7",
+  "requestId": "0x8b8952e3e49d21af3f98f9acaddb6aad4db8a2a804d6c6f48057bb1875343697",
+  "paidOrderId": "ca3aba16-5e1f-4275-91e1-c0f7b70ff38f",
+  "workflowId": "a190aad7-5719-41e3-9af6-17c9b4953d2f",
+  "firstJobId": "01946d1f-cabc-40dd-a198-d4f91c28f85b",
+  "sourceCommit": "a312b27a2661a980d3551eee193a59904287335e",
+  "deploymentChainId": 11155111,
+  "expectedOwner": "0x51404e4a699e4e338e143fb2a45c5cdc96392575",
+  "expectedSigner": "0x2Dc8205A9650faFB65B51aE25cC34cEfDEe08653",
+  "backendOrigin": "https://api.btc-psbt.fun:9443",
+  "admittedAt": "2026-10-30T16:59:08.435Z",
+  "workflowStatusUrl": "https://api.imd.fun/workflows/a190aad7-5719-41e3-9af6-17c9b4953d2f",
+  "note": "Payment admitted; deployment and hosting are not asserted complete. Check the live workflow; never repay the initial request."
+}

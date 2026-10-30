@@ -5,7 +5,7 @@
 ## 已核实的规则
 
 - Genesis当前提交弹窗只接受IMD job链接/ID；自有域名直接提交暂停。首个job付款人必须是Genesis已验证的普通EOA钱包。归属验证后仍需团队审核。
-- 本项目付款钱包由用户确认：`0x51404e4a699e4e338e143fb2a45c5cdc96392575`。尚未创建IMD job。
+- 本项目付款钱包由用户确认：`0x51404e4a699e4e338e143fb2a45c5cdc96392575`。首笔付款已于北京时间2026-10-31 00:59受理，公开归属记录见同目录`imd-admission.json`。不要重复支付首个请求。
 - IMD的job是付费工作单，记录需求、执行、审查和交付。workflow是包含合约job、部署服务、前端job及发布验证的完整流程。
 - 当前workflow.open报价0.5 IMD，HTTP支付网络为Ethereum主网，游戏合约目标为Sepolia。付款网络和部署网络不同。以付款时重新获取的quote为准，不向文档中的地址直接转账。
 - 现有公开GitHub仓库可通过POST /requests/import解析为repoUrl/baseCommit，然后POST /requests/check免费预检。两步不等于付费发起工作。
@@ -32,6 +32,8 @@
 9. 保存workflowId、contracts jobId、frontend jobId、仓库交付commit、合约地址、网站地址。Genesis提交入口接收job ID/URL，不要将workflow ID当job ID粘贴；预览canonical record，核实paidBy和来源后再提交归属。
 
 ## 工程适配
+
+线上API已在`https://api.btc-psbt.fun:9443`运行，证书及续期演练通过。标准443保留给原Reality服务，80保留给邮件服务；仅使用现有webroot作HTTP-01域名验证。合约部署地址尚待IMD返回，不能据此声称存证已上线。当前源代码已包含`lib/`内的OpenZeppelin依赖供离线构建。
 
 - 根foundry.toml及src/SqueekSupplyBoard.sol供IMD识别，设置bytecode_hash="none"。首次免费导入发现仅指定嵌套src路径仍被判no_sources，因此已将实际合约移至根src，统一使用根Foundry配置。本机测试工具为Foundry1.7.1；IMD文档的验证器版本为1.8.3，需以远端导入/审查结果确认兼容，未擅自升级本机全局工具。
 - 使用`onchain:evm_contracts`，不使用默认带代币的evm_project，也不创建池、代币经济或SQK授权。
