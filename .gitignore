@@ -11,3 +11,5 @@ contracts/broadcast/
 *.tmp
 test-results/
 .local/
+dist/
+deploy/production.env

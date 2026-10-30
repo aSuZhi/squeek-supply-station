@@ -1,0 +1,30 @@
+{
+  "action": "workflow.open",
+  "input": {
+    "request": "Import the existing Squeek Supply Station repository at the exact resolved commit; preserve its game and shared ss-2.0.0 engine. Run tests and an independent security review before deployment. Deploy only SqueekSupplyBoard on Sepolia (no token or pool), with the approved owner and the supplied PUBLIC score-signer address as constructor arguments. Then export and publish the existing bilingual frontend using the supplied HTTPS API origin, the deployed Board address and verified ABIs. Validate login, daily challenges, replay, rankings and score pinning against the real backend. Do not replace any missing backend feature with mocks. See deploy/IMD-INTEGRATION.md in the repository.",
+    "context": "Existing Node24/Fastify/SQLite backend is hosted separately; IPFS hosts static files only. API origin and PUBLIC signer address must be supplied before admission. Keep keys server-side. Preserve the EIP-712 SqueekSupply version 2 domain and current ABI. No SQK approvals, token, liquidity pool, prize pot or NFT cup. Owner is the Genesis-verified payer. API_ORIGIN=__PUBLIC_API_ORIGIN__; PUBLIC_SCORE_SIGNER=__SIGNER_ADDRESS__.",
+    "draft": {
+      "objective": "Import, independently review and release the existing Squeek Supply Station without rewriting its game. Deploy its score board only to Sepolia, then publish the existing frontend connected to the real external API. No token or pool. Review before deployment. Never publish secrets or fabricated scores.",
+      "repoUrl": "__EXACT_REPO_URL_FROM_IMPORT__",
+      "baseCommit": "__EXACT_BASE_COMMIT_FROM_IMPORT__",
+      "shape": "chain",
+      "onchain": "evm_contracts",
+      "chainId": 11155111,
+      "owner": "0x51404e4a699e4e338e143fb2a45c5cdc96392575",
+      "github": true,
+      "ipfs": "squeek-supply-station",
+      "contracts": ["SqueekSupplyBoard"],
+      "steps": [
+        { "skill": "audit-imported-code" },
+        { "skill": "adapt-contract-project" },
+        { "skill": "frontend-for-contract" },
+        { "skill": "adversarial-review" }
+      ]
+    },
+    "permissions": {
+      "github": true,
+      "ipfs": "squeek-supply-station",
+      "onchain": { "kind": "evm_contracts", "chainId": 11155111 }
+    }
+  }
+}

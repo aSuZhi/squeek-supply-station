@@ -15,7 +15,8 @@
     "check": "node scripts/check.mjs",
     "contracts:build": "forge build --root contracts",
     "deploy": "node --env-file-if-exists=.env scripts/deploy.mjs",
-    "format": "prettier --write \"server/*.js\" \"scripts/*.mjs\" \"tests/*.mjs\" \"squeek-drop-frontend/squeek-drop/js/*.js\" \"squeek-drop-frontend/squeek-drop/index.html\" \"squeek-drop-frontend/squeek-drop/css/*.css\""
+    "format": "prettier --write \"server/*.js\" \"scripts/*.mjs\" \"tests/*.mjs\" \"squeek-drop-frontend/squeek-drop/js/*.js\" \"squeek-drop-frontend/squeek-drop/index.html\" \"squeek-drop-frontend/squeek-drop/css/*.css\"",
+    "build:site": "node --env-file-if-exists=.env scripts/export-site.mjs"
   },
   "dependencies": {
     "@fastify/cors": "^11.3.1",

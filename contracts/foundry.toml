@@ -6,6 +6,7 @@ solc_version = "0.8.26"
 evm_version = "cancun"
 optimizer = true
 optimizer_runs = 200
+bytecode_hash = "none"
 remappings = ["@openzeppelin/contracts/=../node_modules/@openzeppelin/contracts/"]
 
 [fuzz]
