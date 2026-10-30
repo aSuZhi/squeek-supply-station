@@ -1,4 +1,5 @@
-import { Sim, replay, INPUT, Rng, W } from '../js/engine.js';
+// Historical prototype regression only. Current supply-station tests live at root /tests.
+import { Sim, replay, INPUT, Rng, W } from '../../../engines/sd-1.0.0/engine.js';
 import assert from 'node:assert/strict';
 
 function bot(cfg, botSeed, smart) {

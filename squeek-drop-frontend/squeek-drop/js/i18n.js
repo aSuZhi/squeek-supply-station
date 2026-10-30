@@ -1,91 +1,237 @@
-const D = {
-  en: {
-    tagline: 'Drop hamsters. Merge them up. Mine real Squeek blocks.',
-    sub: 'A merge-drop game that plays with Squeektoshi: the live wheel sets the weather, chain progress fills your block bar, and the best runs get pinned on Sepolia.',
-    playDaily: 'Play the Daily Cup', howTo: 'How to play', nav_play: 'Play', nav_board: 'Leaderboard', nav_help: 'How to play',
-    connect: 'Connect wallet', demo: 'Demo mode',
-    wheel_title: 'Squeektoshi live', wheel_rpm: 'Wheel speed', wheel_height: 'Squeek block', wheel_progress: 'Next block', wheel_round: 'Settled round', wheel_watch: 'Watch the hamster cam',
-    wheel_sim: 'Live API unreachable: showing a simulation', wheel_live: 'Live from api.squeekchain.com',
-    w_NAP: 'Nap', w_JOG: 'Jog', w_ZOOMIES: 'Zoomies',
-    wd_NAP: 'He\u2019s asleep. Calm run: 2 shakes, 2 previews, slower drops.', wd_JOG: 'He\u2019s trotting. Score \u00d71.2, quicker drops.', wd_ZOOMIES: 'Full zoomies! Score \u00d71.5, fast drops, heavier gravity.',
-    modes: 'Pick a mode',
-    m_daily: 'Daily Cup', md_daily: 'Same seed for everyone today. Best verified score ranks.',
-    m_free: 'Free Play', md_free: 'Random seed, no pressure. Practise combos.',
-    m_pot: 'Cheese Pot', md_pot: 'Weekly SQK tournament on Sepolia. Pay the entry, top 3 split the pot.',
-    m_holder: 'Holder Cup', md_holder: 'For Squeek NFT holders. Your Squeek captains the run and boosts score.',
-    play: 'Play', enter: 'Enter', ranked: 'Ranked', casual: 'Casual', onchain: 'On-chain', holders: 'Holders',
-    powered: 'How the chain plays along',
-    p1t: 'Weather from the wheel', p1d: 'Each run locks the live wheel state: Nap, Jog or Zoomies. Every weather has its own perks, so naps count too.',
-    p2t: 'Mine with merges', p2d: 'Your block bar starts at the real SqueekCore block progress. Fill it to mine a block: Fever \u00d72 and a golden SQK seed.',
-    p3t: 'Prove it on-chain', p3d: 'The server replays your inputs to verify the score, signs it, and you pin it to Sepolia from your own wallet.',
-    ladder: 'The Squeek ladder',
-    score: 'Score', best: 'Best', combo: 'Combo', next: 'Next', pouch: 'Cheek pouch', shake: 'Shake', blockbar: 'Block bar', blocks: 'Blocks mined',
-    fever: 'FEVER \u00d72', quit: 'End run', weather: 'Run weather', mode: 'Mode', seed: 'Seed', captain: 'Captain',
-    keys: 'Mouse / touch to aim and drop \u00b7 \u2190 \u2192 aim \u00b7 Space drop \u00b7 C pouch \u00b7 X shake',
-    over: 'Run over', verifying: 'Verifying your run\u2026', verified: 'Verified by replay', rejected: 'Not verified', rank: 'Rank', newBest: 'New best!',
-    again: 'Play again', pin: 'Pin score on Sepolia', pinned: 'Pinned on-chain', share: 'Share on X', lobby: 'Back to lobby', viewTx: 'View tx',
-    board_title: 'Leaderboards', b_daily: 'Daily Cup', b_pot: 'Cheese Pot (week)', b_holder: 'Holder Cup', b_all: 'All-time',
-    player: 'Player', maxLv: 'Top Squeek', empty: 'No runs yet. Be the first!', you: 'You',
-    needWallet: 'Connect a wallet first', wrongChain: 'Switch to Sepolia', noProvider: 'No wallet found. Install MetaMask or Rabby.',
-    potTitle: 'Cheese Pot', potEntry: 'Entry fee', potSize: 'Pot', potEntrants: 'Entrants', potEnds: 'Ends', potApprove: '1. Approve SQK', potEnter: '2. Enter the pot', potEntered: 'You\u2019re in this week', potBal: 'Your SQK',
-    noSqueek: 'No Squeeks found in this wallet. You can still play Daily Cup.', pickCaptain: 'Pick your captain',
-    help_title: 'How to play',
-    h1: 'Drop a hamster anywhere along the top. Two of the same level touch \u2192 they merge into the next level.',
-    h2: 'Chain merges for combo bonus (up to +100%). Reach Squeektoshi (L11) for the crown.',
-    h3: 'Use the cheek pouch to hold one hamster for later, and Shake to unjam the cage.',
-    h4: 'If a hamster stays above the red line for 2 seconds, the run ends.',
-    h5: 'Fill the block bar by merging to mine a Squeek block: 10 s Fever (\u00d72) and a golden SQK seed that upgrades whatever it touches.',
-    close: 'Close', copied: 'Link copied', txSent: 'Transaction sent', txFail: 'Transaction failed',
-  },
-  zh: {
-    tagline: '丢仓鼠，合仓鼠，挖出真正的 Squeek 区块。',
-    sub: '一款和 Squeektoshi 一起玩的合成下落游戏：实时跑轮决定天气，链上进度填充你的区块条，最高分在 Sepolia 上链存证。',
-    playDaily: '开始每日杯', howTo: '玩法说明', nav_play: '开始', nav_board: '排行榜', nav_help: '玩法',
-    connect: '连接钱包', demo: '演示模式',
-    wheel_title: 'Squeektoshi 实时', wheel_rpm: '跑轮转速', wheel_height: 'Squeek 区块', wheel_progress: '下个区块', wheel_round: '已结算轮次', wheel_watch: '看仓鼠直播',
-    wheel_sim: '实时 API 不可用：当前为模拟数据', wheel_live: '实时数据来自 api.squeekchain.com',
-    w_NAP: '打盹', w_JOG: '慢跑', w_ZOOMIES: '狂奔',
-    wd_NAP: '它在睡觉。平稳局：2 次摇晃、2 个预览、下落间隔更长。', wd_JOG: '它在小跑。得分 ×1.2，下落更快。', wd_ZOOMIES: '全力狂奔！得分 ×1.5，快速下落，重力更大。',
-    modes: '选择模式',
-    m_daily: '每日杯', md_daily: '今天所有人同一个种子，以验证后的最高分排名。',
-    m_free: '自由练习', md_free: '随机种子，没有压力，练习连击。',
-    m_pot: '奶酪锅周赛', md_pot: 'Sepolia 上的每周 SQK 锦标赛。支付报名费，前三名瓜分奖池。',
-    m_holder: '持有者杯', md_holder: 'Squeek NFT 持有者专属。你的 Squeek 担任队长并加成得分。',
-    play: '开始', enter: '报名', ranked: '排位', casual: '休闲', onchain: '链上', holders: '持有者',
-    powered: '链如何参与游戏',
-    p1t: '跑轮决定天气', p1d: '每局开始时锁定实时跑轮状态：打盹、慢跑或狂奔。每种天气都有各自加成，打盹也有价值。',
-    p2t: '合成即挖矿', p2d: '区块条起点是 SqueekCore 真实区块进度。合成填满即挖出区块：Fever ×2 并获得金色 SQK 种子。',
-    p3t: '链上证明', p3d: '服务端回放你的操作验证分数并签名，你用自己的钱包把分数存证到 Sepolia。',
-    ladder: 'Squeek 进化阶梯',
-    score: '得分', best: '最佳', combo: '连击', next: '下一个', pouch: '腮帮袋', shake: '摇晃', blockbar: '区块条', blocks: '已挖区块',
-    fever: 'FEVER ×2', quit: '结束本局', weather: '本局天气', mode: '模式', seed: '种子', captain: '队长',
-    keys: '鼠标/触摸瞄准并投放 · ← → 瞄准 · 空格 投放 · C 腮帮袋 · X 摇晃',
-    over: '本局结束', verifying: '正在验证本局…', verified: '回放验证通过', rejected: '验证未通过', rank: '排名', newBest: '新纪录！',
-    again: '再来一局', pin: '在 Sepolia 上链存证', pinned: '已上链', share: '分享到 X', lobby: '返回大厅', viewTx: '查看交易',
-    board_title: '排行榜', b_daily: '每日杯', b_pot: '奶酪锅（本周）', b_holder: '持有者杯', b_all: '历史总榜',
-    player: '玩家', maxLv: '最高仓鼠', empty: '还没有成绩，快来拿第一！', you: '你',
-    needWallet: '请先连接钱包', wrongChain: '请切换到 Sepolia', noProvider: '未检测到钱包，请安装 MetaMask 或 Rabby。',
-    potTitle: '奶酪锅周赛', potEntry: '报名费', potSize: '奖池', potEntrants: '参赛人数', potEnds: '截止', potApprove: '1. 授权 SQK', potEnter: '2. 报名参赛', potEntered: '本周已报名', potBal: '你的 SQK',
-    noSqueek: '此钱包没有 Squeek NFT，你仍可参加每日杯。', pickCaptain: '选择你的队长',
-    help_title: '玩法说明',
-    h1: '在顶部任意位置投放仓鼠。两只同级仓鼠接触 → 合成为下一级。',
-    h2: '连续合成获得连击加成（最高 +100%）。合成到 Squeektoshi（11 级）戴上王冠。',
-    h3: '腮帮袋可以暂存一只仓鼠，摇晃可以疏通笼子。',
-    h4: '若有仓鼠在红线上方停留 2 秒，本局结束。',
-    h5: '合成填满区块条即可挖出 Squeek 区块：10 秒 Fever（×2）并获得一颗金色 SQK 种子，碰到谁就让谁升一级。',
-    close: '关闭', copied: '链接已复制', txSent: '交易已发送', txFail: '交易失败',
-  },
+let lang = localStorage.getItem("ss.lang") || "zh";
+const pairs = {
+  nextStage: ["下一段", "Next stage"],
+  lastStage: [
+    "最后一段，把握交付机会。",
+    "Final stage. Make your deliveries count.",
+  ],
+  missions: ["完成任务", "Missions completed"],
+  skip: ["跳到内容", "Skip to content"],
+  station: ["轮次补给站", "SUPPLY STATION"],
+  play: ["挑战", "Play"],
+  leaderboard: ["排行榜", "Leaderboard"],
+  help: ["怎么玩", "How to play"],
+  connect: ["连接钱包", "Connect wallet"],
+  headline: [
+    "每一次合成，\n都要做点选择。",
+    "Every merge.\nA little decision.",
+  ],
+  intro: [
+    "把真实仓鼠的轮次记录，变成你的三分钟补给挑战。继续合成，还是现在交付？",
+    "Real hamster settlements become your three-minute supply challenge. Keep merging, or deliver now?",
+  ],
+  daily: ["开始每日挑战", "Play daily challenge"],
+  practice: ["自由练习", "Free practice"],
+  anonymousHint: [
+    "无需钱包也能玩；开局前登录可进入真实排行榜。",
+    "No wallet needed. Sign in before starting to join the real leaderboard.",
+  ],
+  objective: ["合成 · 储存 · 交付", "MERGE · STORE · DELIVER"],
+  heroTask: ["空出空间，也别错过机会。", "Make room. Make the moment."],
+  heroDescription: [
+    "交付指定等级的仓鼠获得补给分。继续合成可以冲高分，但会失去当前任务需要的材料。",
+    "Deliver the requested level for supply points. A bigger merge might cost the materials you need now.",
+  ],
+  frozenLabel: [
+    "真实结算记录 / 固定赛题",
+    "REAL SETTLEMENTS / FIXED CHALLENGE",
+  ],
+  today: ["今日轮次挑战", "Today's supply route"],
+  loading: ["正在加载…", "Loading…"],
+  sourceTitle: ["赛题来源与映射规则", "Sources and mapping rules"],
+  sourceRule: [
+    "每段历史结算压缩为 60 秒游戏阶段。工作量决定阶段与目标等级，已完成区块数决定交付数量。这是游戏映射，不是链的原生规则。",
+    "Each historical settlement becomes a 60-second stage. Work sets activity and target level; completed blocks set the quota. This is a game mapping, not a native chain rule.",
+  ],
+  retry: ["重试", "Retry"],
+  rule1: ["先合成，再决定", "Merge, then decide"],
+  rule1body: [
+    "相同等级接触会合成。绿色虚线圈出可交付的目标；交付后会离开盘面。",
+    "Matching levels merge on contact. A green ring marks a delivery candidate; delivering removes it.",
+  ],
+  rule2: ["同一赛题，公平比较", "One challenge. Equal conditions."],
+  rule2body: [
+    "每日挑战固定掉落序列、三段任务和计分规则，不随实时天气变化。",
+    "Daily drops, missions and scoring are frozen. Live weather never changes ranked conditions.",
+  ],
+  rule3: ["每一分，都能回放", "Every point can be replayed"],
+  rule3body: [
+    "服务端重放操作后记录成绩。个人最佳可在配置好的 Sepolia 合约存证。",
+    "The server replays inputs before saving scores. Personal bests can be pinned to a configured Sepolia contract.",
+  ],
+  finish: ["结束并结算", "Finish run"],
+  journey: ["三段补给路线", "YOUR THREE-STAGE ROUTE"],
+  gameNotice: [
+    "盘面能量、补给和合成均为游戏内数值，不会挖出真实区块或产生 SQK。",
+    "Energy and supplies are game values. Playing does not mine real blocks or create SQK.",
+  ],
+  score: ["总分", "Score"],
+  delivered: ["已交付", "Delivered"],
+  remaining: ["剩余", "Time left"],
+  energy: ["游戏能量", "Game energy"],
+  controls: [
+    "点击投放 · ← → 瞄准 · 空格投放 · E 交付 · C 储存 · X 摇晃",
+    "Tap to drop · ← → Aim · Space Drop · E Deliver · C Store · X Shake",
+  ],
+  deliver: ["交付补给 E", "Deliver E"],
+  next: ["接下来", "Up next"],
+  pouch: ["腮帮袋 C", "Pouch C"],
+  shake: ["摇晃 X", "Shake X"],
+  verifiedBoard: [
+    "仅记录服务端验证的真实成绩",
+    "REAL SCORES VERIFIED BY SERVER REPLAY",
+  ],
+  date: ["UTC 日期", "UTC date"],
+  boardRules: [
+    "每个钱包保留最高分；同分按首次取得该分数的时间排序。链上确认与服务端验证分别显示。",
+    "One best per wallet. Ties use the earliest completion time. Server verification and chain confirmation are separate.",
+  ],
+  rank: ["名次", "Rank"],
+  player: ["玩家", "Player"],
+  proof: ["验证记录", "Evidence"],
+  refresh: ["刷新榜单", "Refresh board"],
+  footer: [
+    "来自真实结算的游戏挑战 · 不产生真实 SQK · 服务端回放验证",
+    "Challenges from real settlements · No real SQK generated · Server replay verified",
+  ],
+  official: ["Squeekchain 官网 ↗", "Squeekchain ↗"],
+  runComplete: ["本次补给结束", "SUPPLY RUN COMPLETE"],
+  viewTx: ["查看交易 ↗", "View transaction ↗"],
+  retryFinish: ["重试提交", "Retry submission"],
+  pin: ["存证到 Sepolia", "Pin on Sepolia"],
+  again: ["再挑战一次", "Play again"],
+  back: ["返回大厅", "Back to station"],
+  trust: [
+    "链上记录证明签名方认可此成绩；合约不重算游戏，也不证明操作者是真人。",
+    "The record proves the signer accepted this score. The contract does not rerun the game or prove a human played.",
+  ],
+  close: ["关闭", "Close"],
+  NAP: ["休整", "Restock"],
+  JOG: ["运输", "Transport"],
+  ZOOMIES: ["加急", "Express"],
+  phase: ["阶段", "Stage"],
+  rounds: ["历史轮次", "Historical rounds"],
+  quota: ["交付", "Deliver"],
+  bonus: ["任务完成额外 +200", "Mission bonus +200"],
+  waiting: [
+    "准备目标等级；出生满 70 tick 后可交付。",
+    "Prepare the target level. It must be 70 ticks old to deliver.",
+  ],
+  ready: ["绿色虚线圈中的目标可交付。", "The green-ringed hamster is ready."],
+  missionDone: [
+    "任务完成！可为下一段保留材料。",
+    "Mission complete! Save supplies for the next stage.",
+  ],
+  ranked: ["已登录 · 本局计入排行榜", "Signed in · Ranked run"],
+  unranked: ["游客体验 · 本局不计入排行榜", "Guest · Not ranked"],
+  practiceHint: [
+    "本地练习 · 人工配置 · 不提交成绩",
+    "Local practice · Synthetic configuration · No submission",
+  ],
+  verified: ["服务端回放验证通过", "Server replay verified"],
+  verifying: ["正在提交并回放验证…", "Submitting and verifying replay…"],
+  localComplete: [
+    "本地练习已完成，未提交服务器。",
+    "Local practice complete. No server submission.",
+  ],
+  empty: [
+    "还没有真实成绩。成为第一位补给员吧。",
+    "No real scores yet. Be the first supply runner.",
+  ],
+  unavailable: [
+    "今日赛题暂不可用。可重试或进入自由练习。",
+    "Daily challenge unavailable. Retry or play practice.",
+  ],
+  frozen: [
+    "赛题已发布并冻结，所有人使用相同配置。",
+    "Published and frozen. Everyone receives the same configuration.",
+  ],
+  chainMissing: [
+    "成绩存证暂未配置。服务端验证与真实排行榜仍可使用。",
+    "Score attestation is not configured. Verification and rankings are available.",
+  ],
+  anonResult: [
+    "本局为游客体验。登录后重新开局可参与排名。",
+    "Guest run. Sign in before your next run to rank.",
+  ],
+  confirmed: ["链上已确认", "Confirmed on-chain"],
+  pending: [
+    "交易已提交，等待链上确认",
+    "Transaction submitted; awaiting confirmation",
+  ],
+  notPinned: ["服务端已验证", "Server verified"],
+  you: ["你", "You"],
+  replay: ["回放数据", "Replay data"],
+  sessionChanged: [
+    "钱包已变更，请重新登录。游客局不会自动转为排位局。",
+    "Wallet changed. Sign in again. Guest runs do not become ranked mid-game.",
+  ],
+  loginFirst: [
+    "请使用开局时的钱包重新登录。",
+    "Sign in with the wallet used to start this run.",
+  ],
+  network_error: [
+    "网络连接失败。请检查后端是否启动，再重试。",
+    "Connection failed. Check the backend, then retry.",
+  ],
+  auth_required: [
+    "登录已过期，请重新连接钱包。",
+    "Session expired. Reconnect your wallet.",
+  ],
+  challenge_changed: [
+    "UTC 日期已更新，请重新加载挑战。",
+    "UTC date changed. Reload the challenge.",
+  ],
+  rules_version_mismatch: [
+    "规则已更新，请刷新页面。",
+    "Rules changed. Refresh the page.",
+  ],
+  attestation_not_configured: [
+    "成绩合约或签名服务尚未配置。",
+    "Contract or signer is not configured.",
+  ],
+  score_already_pinned: [
+    "此分数或更高分数已存证。",
+    "This score or a higher score is already pinned.",
+  ],
+  not_personal_best: [
+    "只有当前个人最佳可以申请存证。",
+    "Only your current personal best can be attested.",
+  ],
+  wrong_rpc_chain: ["后端 RPC 网络不匹配。", "Backend RPC network mismatch."],
+  signer_mismatch: [
+    "合约签名者与后端配置不匹配。",
+    "Contract signer and backend configuration differ.",
+  ],
+  challenge_not_found: [
+    "该日期尚无已发布赛题。",
+    "No published challenge for that date.",
+  ],
+  rejected: ["验证未通过", "Verification rejected"],
+  noWallet: [
+    "未检测到浏览器钱包。仍可匿名挑战或自由练习。",
+    "No browser wallet found. Guest play and practice remain available.",
+  ],
+  restored: [
+    "已恢复上次结算，请重试提交或查看存证状态。",
+    "Previous result restored. Retry submission or check the pin status.",
+  ],
+  helpContent: [
+    "<ol><li>点击盘面或空格投放，同级接触合成。</li><li>三段任务，每段 60 秒。提前查看下一段目标，保留材料。</li><li>E 或交付按钮送走指定等级的成熟仓鼠。每只等级 ×40 分，达到数量再加 200 分。</li><li>C 储存/交换，X 摇晃。每段重置次数：休整两次，其他一次。</li><li>堆过红线持续两秒结束。满能量触发 10 秒双倍合成分，与真实出块无关。</li><li>每日赛题基于官方安全结算并冻结，练习为人工配置。登录后开局才计入真实排行榜。</li></ol>",
+    "<ol><li>Tap or Space to drop. Matching levels merge on contact.</li><li>Three 60-second missions. Save materials for the next target.</li><li>E delivers one mature hamster at the exact requested level. Earn level ×40 per delivery and +200 for the quota.</li><li>C stores/swaps; X shakes. Charges reset each stage: two for Restock, one otherwise.</li><li>Two seconds above the red line ends the run. Full game energy doubles merge points for 10 seconds, not real blocks.</li><li>Daily challenges are frozen from safe official settlements. Practice is synthetic. Sign in before starting to rank.</li></ol>",
+  ],
 };
-export const LEVEL_NAMES = {
-  en: ['SQK Seed', 'Pip', 'Puff', 'Fuzz', 'Cheeks', 'Jogger', 'Wheelie', 'Hoarder', 'Miner', 'Validator', 'Megasqueek', 'Squeektoshi'],
-  zh: ['SQK 种子', '豆豆', '团子', '毛球', '腮帮', '跑跑', '滚轮', '囤囤', '矿工', '验证者', '巨鼠', '中本鼠'],
-};
-let lang = localStorage.getItem('sd.lang') || ((navigator.language || 'en').toLowerCase().startsWith('zh') ? 'zh' : 'en');
+export const t = (key) => pairs[key]?.[lang === "zh" ? 0 : 1] || key;
 export const getLang = () => lang;
-export const setLang = (l) => { lang = l; localStorage.setItem('sd.lang', l); applyI18n(); };
-export const t = (k) => (D[lang] && D[lang][k]) ?? D.en[k] ?? k;
-export const levelName = (lv) => LEVEL_NAMES[lang][lv];
-export function applyI18n(root = document) {
-  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-  root.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+export function toggleLang() {
+  lang = lang === "zh" ? "en" : "zh";
+  localStorage.setItem("ss.lang", lang);
+  applyI18n();
+}
+export function applyI18n() {
+  document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+  document
+    .querySelectorAll("[data-i18n]")
+    .forEach((el) => (el.textContent = t(el.dataset.i18n)));
+  document.querySelector("#langBtn").textContent = lang === "zh" ? "EN" : "中";
 }

@@ -1,31 +1,7 @@
-# Squeek Drop · 仓鼠大合成
+# 轮次补给站前端
 
-A merge-drop game played with Squeektoshi, Squeekchain's hamster. Built for the Squeekchain Genesis code lane.
+当前规则 `ss-2.0.0`，沿用原生ESM/Canvas。请从仓库根目录执行 `npm install`、`npm start`，访问 http://localhost:8080 。不再使用旧MockApi。
 
-- **Live wheel → run weather** (Nap / Jog / Zoomies) from `api.squeekchain.com/v1/status`
-- **Block bar** starts at SqueekCore's real `blockProgress`. Merges mine blocks → Fever ×2 + golden SQK seed
-- **Verified scores**: the backend replays the input log with the same `js/engine.js` and signs an EIP-712 attestation, then the player pins it on Sepolia
-- **Cheese Pot**: weekly SQK (Sepolia) tournament. `approve` on SqueekToken + `enter` on CheesePot
-- **Holder Cup**: Squeek NFT holders pick a captain Squeek (score boost + separate board)
+engine.js和challenge.js由浏览器和后端共享。当前测试位于根目录tests；本目录tests/engine.test.mjs仅用于旧版引擎快照回归。
 
-## Run locally
-```
-npm test              # engine determinism / replay tests
-npm run dev           # static server on :5173 → http://localhost:5173
-```
-Without a backend the app runs in **demo mode** (mock API in `js/api.js`, localStorage). To point it at a backend:
-`http://localhost:5173/?api=https://api.squeekdrop.xyz` or define `window.SQUEEK_DROP_CONFIG = { apiBase: '…' }` before `js/app.js`.
-
-## Files
-| Path | Role |
-|---|---|
-| `js/engine.js` | Deterministic simulation + `replay()`. **Shared with the backend verifier. Do not fork.** |
-| `js/rules.js` | Weather mapping, board ids, season ids (shared) |
-| `js/render.js` | Canvas renderer (hamster balls, particles) |
-| `js/app.js` | UI controller, game loop, input, flows |
-| `js/api.js` | HTTP client (TDD §6) + `MockApi` |
-| `js/wallet.js` | EIP-1193 wallet, keccak256, ABI encoding, contract calls |
-| `js/wheel.js` | Live Squeekchain status poller with simulation fallback |
-| `js/i18n.js` | EN / 中文 strings |
-
-No build step, no runtime dependencies: deploy the folder as a static site (IPFS / ENS via IMD).
+独立静态发布可通过window.SQUEEK_DROP_CONFIG.apiBase配置后端。服务不可用时自由练习仍可运行；每日挑战、榜单和存证不能以模拟数据替代。完整运行和部署说明见根目录README.md。

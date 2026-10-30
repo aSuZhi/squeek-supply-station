@@ -1,0 +1,19 @@
+name: Verify supply station
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: v1.7.1
+      - run: npm ci
+      - run: npm run check
+      - run: npm test
+      - run: npm run test:contracts
+      - run: npm run test:chain

@@ -1,1 +1,10 @@
-{"type":"module","name":"squeek-drop","private":true,"scripts":{"test":"node tests/engine.test.mjs","dev":"python3 -m http.server 5173"}}
+{
+  "type": "module",
+  "name": "squeek-drop",
+  "private": true,
+  "scripts": {
+    "test": "npm --prefix ../.. test",
+    "test:legacy": "node tests/engine.test.mjs",
+    "dev": "npm --prefix ../.. start"
+  }
+}
