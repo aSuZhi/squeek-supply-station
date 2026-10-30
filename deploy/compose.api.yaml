@@ -1,0 +1,35 @@
+# Backend-only deployment for hosts whose public 80/443 ports are already in use.
+# HTTPS ingress is configured separately after checking the existing host services.
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: squeek-supply-api:local
+    restart: unless-stopped
+    env_file: production.env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8080
+      NODE_ENV: production
+      DB_PATH: /data/squeek.sqlite
+    ports:
+      - "127.0.0.1:18080:8080"
+    mem_limit: 512m
+    cpus: 1.0
+    pids_limit: 128
+    volumes:
+      - game-data:/data
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8080/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+volumes:
+  game-data:
